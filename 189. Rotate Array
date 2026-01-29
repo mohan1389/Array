@@ -1,0 +1,57 @@
+Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+Example 1:
+Input: nums = [1,2,3,4,5,6,7], k = 3
+Output: [5,6,7,1,2,3,4]
+Explanation:
+rotate 1 steps to the right: [7,1,2,3,4,5,6]
+rotate 2 steps to the right: [6,7,1,2,3,4,5]
+rotate 3 steps to the right: [5,6,7,1,2,3,4]
+
+
+
+BRUTEFORCE: TC O(2n) SC O(n)
+#include<bits/stdc++.h>
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<int> arr(n,INT_MIN);
+        for (int i=0; i<n; i++){
+            arr[(i+k)%n] = nums[i];
+        }
+
+        for (int i=0; i<n; i++){
+            nums[i] = arr[i];
+        }
+        
+    }
+};
+_________________________________________________________________________
+OPTIMAL TC O(2n) SC O(1)
+
+APPROACH: 1) reverse the array
+          2) reverse from to k-1 digits from start
+          3) reverse from k to n-1
+
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        k=k%nums.size();
+
+        reverseArray(nums, 0, nums.size()-1);
+        reverseArray(nums, 0, k-1);
+        reverseArray(nums, k, nums.size()-1);
+    }
+
+    void reverseArray(vector<int>& arr, int l, int r) {
+        while (l < r) {
+            swap(arr[l], arr[r]);
+            l++;
+            r--;
+        }
+    }
+};
+
+
