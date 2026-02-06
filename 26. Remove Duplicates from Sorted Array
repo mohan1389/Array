@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>           TC: O(2n)  SC: O(n)  BRUTEFORCE
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        vector<int>ans;
+         int last = INT_MIN, n = nums.size();
+
+        for(int i=0; i<n; i++){
+            if(nums[i] > last){
+                ans.push_back(nums[i]);
+                last = nums[i];
+            }
+        }
+
+        for(int i=0; i<ans.size(); i++){
+            nums[i] = ans[i];
+        }
+
+        return ans.size();
+    }
+
+};
