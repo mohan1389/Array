@@ -20,4 +20,19 @@ public:
 };
 
 
-m
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {  // BETTER TC: O(2n) | SC: O(n)
+       int n = nums.size();
+       unordered_map<int,int> mpp;
+       for(int x : nums){
+            mpp[x]++;
+       }
+
+       for(auto it : mpp){
+        if(it.second > int(n/2)) return it.first;
+       }
+
+       return -1;
+    }
+};
