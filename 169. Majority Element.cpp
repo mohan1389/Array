@@ -36,3 +36,22 @@ public:
        return -1;
     }
 };
+
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {  // BETTER TC: O(n) | SC: O(1)
+        int cnt = 0;
+        int number = 0;
+        int n =nums.size();
+
+       for(int i=0; i<n; i++){
+        if(cnt == 0) number = nums[i];
+        if(nums[i] == number) cnt++;
+        else cnt--;
+       }
+       return number;
+    }
+};
+
+
