@@ -7,7 +7,7 @@ Explanation: The 8 subarrays that have product less than 100 are:
 Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
 
 
-
+  // BRUTEFORCE
   class Solution { // TC: O(n^2) | SC: O(1)
   public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
@@ -22,6 +22,33 @@ Note that [10, 5, 2] is not included as the product of 100 is not strictly less 
                 if(product<k) cnt++;
                 else break;
             }
+        }
+        return cnt;
+    }
+};
+
+
+
+//OPTIMAL
+class Solution { // TC: O(2N) | SC: O(1)
+  public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        int i=0;
+        int j=0;
+        int n = nums.size();
+        long long product = 1;
+        int cnt = 0;
+
+        while(j < n){
+            product = product * nums[j];
+
+            while(product >= k && i<=j){
+                product /= nums[i];
+                i++;
+            }
+
+            cnt = cnt + (j-i+1);
+            j++;
         }
         return cnt;
     }
