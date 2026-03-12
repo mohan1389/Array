@@ -1,4 +1,4 @@
-//BETTER
+//BRYTEFORCE
 //TC: O(n^2)
 //SC: O(1)
 class Solution {
@@ -19,7 +19,7 @@ public:
 };
 
 
-//BRUTEFORCE
+//BETTER
 //TC: O(n)
 //SC: O(1)
 class Solution {
